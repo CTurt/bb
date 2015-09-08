@@ -23,6 +23,10 @@ gamecube:
 linux:
 	make -f Makefile.lin
 
+.PHONY: osx
+osx:
+	make -f Makefile.osx
+
 .PHONY: psp
 psp:
 	make -f Makefile.psp
