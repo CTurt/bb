@@ -31,6 +31,11 @@
 	#define LITTLE_E
 #endif
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#define LITTLE_E
+#endif
+
 #ifdef LIN
 	#include <GL/gl.h>
 	#include <GL/glx.h>
