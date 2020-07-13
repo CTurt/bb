@@ -29,6 +29,7 @@ Window win;
 GLXContext glc;
 XWindowAttributes gwa;
 XEvent xev;
+KeySym sym;
 
 void quit(void) {
 	glXMakeCurrent(dpy, None, NULL);
@@ -62,7 +63,7 @@ int main(int argc, char **argv) {
 	cmap = XCreateColormap(dpy, root, vi->visual, AllocNone);
 	
 	swa.colormap = cmap;
-	swa.event_mask = ExposureMask | KeyPressMask;
+	swa.event_mask = ExposureMask | KeyPressMask | KeyReleaseMask;
 	
 	win = XCreateWindow(dpy, root, 0, 0, 160, 144, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
 	
@@ -105,45 +106,38 @@ int main(int argc, char **argv) {
 			
 			if(xev.type == KeyPress || xev.type == KeyRelease) {
 				//printf("%d\n", xev.xkey.keycode);
-				switch(xev.xkey.keycode) {
-					//case XK_BackSpace:
-					case 22:
-						keys.select = (xev.type == KeyPress);
+				sym = XLookupKeysym( &xev.xkey, 0 );
+				switch(sym) {
+					case XK_BackSpace:
+						keys.select = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_Return:
-					case 36:
-						keys.start = (xev.type == KeyPress);
+					case XK_Return:
+						keys.start = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_z:
-					case 52:
-						keys.b = (xev.type == KeyPress);
+					case XK_z:
+						keys.b = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_x:
-					case 53:
-						keys.a = (xev.type == KeyPress);
+					case XK_x:
+						keys.a = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_Left:
-					case 113:
-						keys.left = (xev.type == KeyPress);
+					case XK_Left:
+						keys.left = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_Right:
-					case 114:
-						keys.right = (xev.type == KeyPress);
+					case XK_Right:
+						keys.right = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_Up:
-					case 111:
-						keys.up = (xev.type == KeyPress);
+					case XK_Up:
+						keys.up = (xev.type == KeyPress) ? 0 : 1;
 						break;
 					
-					//case XK_Down:
-					case 116:
-						keys.down = (xev.type == KeyPress);
+					case XK_Down:
+						keys.down = (xev.type == KeyPress) ? 0 : 1;
 						break;
 				}
 			}
