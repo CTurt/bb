@@ -27,7 +27,7 @@ Read my article about writing Cinoop [here](http://cturt.github.io/cinoop.html).
 
 ![PSP emulator running Cinoop](screenshots/psp.png)
 
-[Video of PS4 verstion running Tetris](https://www.youtube.com/watch?v=94Q91xDJatE)
+[Video of PS4 version running Tetris](https://www.youtube.com/watch?v=94Q91xDJatE)
 
 The DS version does not run full speed, and the Linux port does not yet support input.
 
